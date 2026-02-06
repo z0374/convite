@@ -1,6 +1,6 @@
 <?php
 /**
- * Roteador do Módulo Convite
+ * Roteador do Módulo Convite - Versão Switch Case
  */
 define("ROOT_PATH_CONVITE", __DIR__);
 
@@ -8,43 +8,59 @@ define("ROOT_PATH_CONVITE", __DIR__);
 ob_start();
 
 $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-// Pega apenas a parte final da rota após /convite
-$subRoute = str_replace('/convite', '', $requestUri);
-$subRoute = rtrim($subRoute, '/');
+$subRoute = rtrim(str_replace('/convite', '', $requestUri), '/');
 
-// --- ROTA DE API (CONFIRMAR) ---
-if ($subRoute === '/confirmar') {
-    ob_clean(); // Limpa o buffer antes de entregar o JSON
-    require_once ROOT_PATH_CONVITE . "/confirmar.php";
-    exit;
-}
+// Se a sub-rota ficar vazia após o replace, tratamos como raiz
+$subRoute = ($subRoute === '') ? '/' : $subRoute;
 
-// ROTA DE ADMINISTRAÇÃO: /convite/lista
-if (strpos($requestUri, '/lista') !== false) {
-    ob_clean();
-    require_once __DIR__ . '/list/lista.php';
-    exit;
-}
+switch (true) {
+    // --- ROTA DE API (CONFIRMAR) ---
+    case ($subRoute === '/confirmar'):
+        ob_clean();
+        require_once ROOT_PATH_CONVITE . "/confirmar.php";
+        exit;
 
-// --- ROTA DA PÁGINA (INTERFACE) ---
-if ($subRoute === '' || $subRoute === '/') {
-    $libPath = dirname(ROOT_PATH_CONVITE, 3) . "/lib/index.php";
-    if (file_exists($libPath)) {
-        require_once($libPath);
-    }
+    // --- ROTA DE ADMINISTRAÇÃO ---
+    case ($subRoute === '/lista'):
+        ob_clean();
+        require_once ROOT_PATH_CONVITE . '/list/lista.php';
+        exit;
 
-    $style[] = file_exists(ROOT_PATH_CONVITE . "/style.css") ? file_get_contents(ROOT_PATH_CONVITE . "/style.css") : "";
-    $body[] = file_exists(ROOT_PATH_CONVITE . "/body.html") ? file_get_contents(ROOT_PATH_CONVITE . "/body.html") : "";
-    $script[] = file_exists(ROOT_PATH_CONVITE . "/script.js")  ? file_get_contents(ROOT_PATH_CONVITE . "/script.js") : "";
-    $favicon[] = "/convite/ayla.png";
-    $title[] = "Aniversário da Ayla - 1 Aninho";
+    // --- ROTA DE VISUALIZAÇÃO DIRETA (HTML) ---
+    case ($subRoute === '/visualizar'):
+        $arquivoHtml = ROOT_PATH_CONVITE . "/convite.html";
+        if (file_exists($arquivoHtml)) {
+            ob_clean();
+            header("Content-Type: text/html; charset=UTF-8");
+            readfile($arquivoHtml);
+        } else {
+            echo "Erro: Arquivo convite.html não encontrado.";
+        }
+        exit;
 
-    if (function_exists('html')) {
-        echo html();
-    } else {
-        echo "<!DOCTYPE html><html><head><title>$title</title><style>$style</style></head><body>$body<script>$script</script></body></html>";
-    }
-} else {
-    header("HTTP/1.0 404 Not Found");
-    echo "Página não encontrada: " . htmlspecialchars($subRoute);
+    // --- ROTA DA PÁGINA PRINCIPAL (INTERFACE VIA LIB) ---
+    case ($subRoute === '/'):
+        $libPath = dirname(ROOT_PATH_CONVITE, 3) . "/lib/index.php";
+        if (file_exists($libPath)) {
+            require_once($libPath);
+        }
+
+        $style[] = file_exists(ROOT_PATH_CONVITE . "/style.css") ? file_get_contents(ROOT_PATH_CONVITE . "/style.css") : "";
+        $body[] = file_exists(ROOT_PATH_CONVITE . "/body.html") ? file_get_contents(ROOT_PATH_CONVITE . "/body.html") : "";
+        $script[] = file_exists(ROOT_PATH_CONVITE . "/script.js") ? file_get_contents(ROOT_PATH_CONVITE . "/script.js") : "";
+        $favicon[] = "/convite/ayla.png";
+        $title[] = "Aniversário da Ayla - 1 Aninho";
+
+        if (function_exists('html')) {
+            echo html();
+        } else {
+            echo "<!DOCTYPE html><html><head><title>$title</title><style>$style</style></head><body>$body<script>$script</script></body></html>";
+        }
+        break;
+
+    // --- ROTA PADRÃO (404) ---
+    default:
+        header("HTTP/1.0 404 Not Found");
+        echo "<h1>404</h1>Página não encontrada: " . htmlspecialchars($subRoute);
+        break;
 }
