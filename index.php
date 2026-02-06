@@ -16,6 +16,8 @@ if (file_exists($libPath)) {
 $style[]  = file_exists(ROOT_PATH_CONVITE . "/style.css") ? file_get_contents(ROOT_PATH_CONVITE . "/style.css") : "";
 $body[]   = file_exists(ROOT_PATH_CONVITE . "/body.php") ? file_get_contents(ROOT_PATH_CONVITE . "/body.php") : "";
 $script[] = file_exists(ROOT_PATH_CONVITE . "/script.js")  ? file_get_contents(ROOT_PATH_CONVITE . "/script.js") : "";
+$favicon[] = "/convite/ayla.png";
+$title[] = "Aniversário da Ayla - 1 Aninho";
 
 // Lógica de sub-rotas interna
 $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
