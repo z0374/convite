@@ -1,50 +1,43 @@
 <?php
 header("Content-Type: application/json");
 
-// Caminho absoluto para o arquivo de dados
-$arquivo = __DIR__ . "/confirmados.json";
+// --- CONFIGURAÇÕES DO BANCO (Pegue no painel da InfinityFree) ---
+$host   = 'sql213.infinityfree.com'; // Ex: sql102.infinityfree.com
+$dbname = 'if0_36885198_convite';
+$user   = 'if0_36885198';
+$pass   = 'I1l70bveexvs';
 
-// Cria o arquivo se não existir
-if (!file_exists($arquivo)) {
-    file_put_contents($arquivo, json_encode([], JSON_PRETTY_PRINT));
-    chmod($arquivo, 0666);
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo json_encode(["sucesso" => false, "mensagem" => "Erro de conexão: " . $e->getMessage()]);
+    exit;
 }
 
-// Lê os dados atuais
-$dados = json_decode(file_get_contents($arquivo), true);
-if (!is_array($dados)) $dados = [];
-
-// --- SE FOR POST: SALVAR ---
+// --- SE FOR POST: SALVAR NO BANCO ---
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $input = json_decode(file_get_contents("php://input"), true);
-
+    
     $nome = isset($input["nome"]) ? trim($input["nome"]) : "";
     $qtd  = isset($input["qtd"]) ? intval($input["qtd"]) : 0;
 
     if ($nome !== "" && $qtd > 0) {
-        $dados[] = [
-            "familia" => $nome,
-            "quantidade" => $qtd,
-            "data" => date("d/m/Y H:i")
-        ];
-
-        if (file_put_contents($arquivo, json_encode($dados, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE), LOCK_EX)) {
-            // Calcula o total atualizado para retornar
-            $total = 0;
-            foreach ($dados as $item) { $total += (int)$item["quantidade"]; }
-            echo json_encode(["sucesso" => true, "total" => $total]);
+        $stmt = $pdo->prepare("INSERT INTO confirmados_Ayla_um_ano  (familia, quantidade) VALUES (:nome, :qtd)");
+        $stmt->bindParam(':nome', $nome);
+        $stmt->bindParam(':qtd', $qtd);
+        
+        if ($stmt->execute()) {
+            // Busca o total atualizado imediatamente
+            $total = $pdo->query("SELECT SUM(quantidade) FROM confirmados_Ayla_um_ano ")->fetchColumn();
+            echo json_encode(["sucesso" => true, "total" => (int)$total]);
         } else {
-            echo json_encode(["sucesso" => false, "mensagem" => "Sem permissão de escrita no servidor."]);
+            echo json_encode(["sucesso" => false, "mensagem" => "Erro ao salvar no banco."]);
         }
         exit;
     }
-    echo json_encode(["sucesso" => false, "mensagem" => "Dados inválidos."]);
-    exit;
 }
 
 // --- SE FOR GET: RETORNAR TOTAL ---
-$total = 0;
-foreach ($dados as $item) {
-    $total += (int)$item["quantidade"];
-}
-echo json_encode(["total" => $total]);
+$total = $pdo->query("SELECT SUM(quantidade) FROM confirmados_Ayla_um_ano ")->fetchColumn();
+echo json_encode(["total" => (int)($total ?: 0)]);
