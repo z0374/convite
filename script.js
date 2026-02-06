@@ -1,8 +1,8 @@
 const WHATSAPP_NUMERO = "+5562985341962"; // ALTERE PARA SEU NÚMERO
-
+const urlConfirm = "/convite/confirmar";
 function carregarTotal() {
   // Tenta carregar, mas não quebra se o PHP não estiver rodando (ex: GitHub Pages)
-  fetch("confirmar.php")
+  fetch(urlConfirm)
     .then(r => r.json())
     .then(d => {
       if(d.total) document.getElementById("totalConfirmados").innerText = d.total;
@@ -25,7 +25,7 @@ function confirmar() {
   }
 
   // Tenta salvar no backend (PHP)
-  fetch("/convite/confirmar", {
+  fetch(urlConfirm, {
     method: "POST",
     headers: {"Content-Type":"application/json"},
     body: JSON.stringify({ nome, qtd })
