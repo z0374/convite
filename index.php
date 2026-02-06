@@ -19,6 +19,13 @@ if ($subRoute === '/confirmar') {
     exit;
 }
 
+// ROTA DE ADMINISTRAÇÃO: /convite/lista
+if (strpos($requestUri, '/lista') !== false) {
+    ob_clean();
+    require_once __DIR__ . '/list/lista.php';
+    exit;
+}
+
 // --- ROTA DA PÁGINA (INTERFACE) ---
 if ($subRoute === '' || $subRoute === '/') {
     $libPath = dirname(ROOT_PATH_CONVITE, 3) . "/lib/index.php";
