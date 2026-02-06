@@ -1,5 +1,6 @@
 const WHATSAPP_NUMERO = "+5562985341962"; // ALTERE PARA SEU NÚMERO
 const urlConfirm = "/convite/confirmar";
+
 function carregarTotal() {
   // Tenta carregar, mas não quebra se o PHP não estiver rodando (ex: GitHub Pages)
   fetch(urlConfirm)
