@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+<!--DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ayla Liz • 1 Aninho</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/convite/style.css">
 </head>
-<body>
+<body-->
 
   <div class="cenario-fundo"></div>
 
@@ -38,7 +38,8 @@
   </audio>
 
   <div class="convite">
-    <img src="img/ayla.jpg" class="foto" alt="Foto da Ayla">
+
+    <img src="/convite/assets/ayla.png" class="foto" alt="Foto da Ayla Liz">
 
     <h1>🌸 Jardim Encantado 🌸</h1>
     <h2>Ayla Liz</h2>
@@ -81,6 +82,6 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <!--script src="script.js"></script>
 </body>
-</html>
+</html-->
