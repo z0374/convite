@@ -53,6 +53,7 @@ function finalizarConfirmacao(nome, qtd) {
   );
 
 window.open(`https://wa.me/${WHATSAPP_NUMERO}?text=${msg}`, '_blank');
+window.location.reload();
 }
 
 function alterarQtd(valor) {
