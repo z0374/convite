@@ -31,11 +31,11 @@ if ($subRoute === '/') {
     }
 
     // Carrega ativos
-    $style = file_exists(ROOT_PATH_CONVITE . "/style.css") ? file_get_contents(ROOT_PATH_CONVITE . "/style.css") : "";
-    $body  = file_exists(ROOT_PATH_CONVITE . "/body.html") ? file_get_contents(ROOT_PATH_CONVITE . "/body.html") : "";
-    $script = file_exists(ROOT_PATH_CONVITE . "/script.js")  ? file_get_contents(ROOT_PATH_CONVITE . "/script.js") : "";
-    $favicon = "/convite/ayla.png";
-    $title = "Aniversário da Ayla - 1 Aninho";
+    $style[] = file_exists(ROOT_PATH_CONVITE . "/style.css") ? file_get_contents(ROOT_PATH_CONVITE . "/style.css") : "";
+    $body[]  = file_exists(ROOT_PATH_CONVITE . "/body.html") ? file_get_contents(ROOT_PATH_CONVITE . "/body.html") : "";
+    $script[] = file_exists(ROOT_PATH_CONVITE . "/script.js")  ? file_get_contents(ROOT_PATH_CONVITE . "/script.js") : "";
+    $favicon[] = "/convite/ayla.png";
+    $title[] = "Aniversário da Ayla - 1 Aninho";
 
     if (function_exists('html')) {
         echo html();
