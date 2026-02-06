@@ -1,4 +1,4 @@
-const WHATSAPP_NUMERO = "5511999999999"; // ALTERE PARA SEU NÚMERO
+const WHATSAPP_NUMERO = "+5562985341962"; // ALTERE PARA SEU NÚMERO
 
 function carregarTotal() {
   // Tenta carregar, mas não quebra se o PHP não estiver rodando (ex: GitHub Pages)
@@ -25,7 +25,7 @@ function confirmar() {
   }
 
   // Tenta salvar no backend (PHP)
-  fetch("confirmar.php", {
+  fetch("/convite/confirmar", {
     method: "POST",
     headers: {"Content-Type":"application/json"},
     body: JSON.stringify({ nome, qtd })
@@ -51,7 +51,7 @@ function finalizarConfirmacao(nome, qtd) {
     `Quantidade: ${qtd} pessoas`
   );
 
-  window.location.href = `https://wa.me/${WHATSAPP_NUMERO}?text=${msg}`;
+window.open(`https://wa.me/${WHATSAPP_NUMERO}?text=${msg}`, '_blank');
 }
 
 function alterarQtd(valor) {
