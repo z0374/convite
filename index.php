@@ -52,7 +52,7 @@ switch (true) {
         $title[] = "Aniversário da Ayla - 1 Aninho";
 
         if (function_exists('html')) {
-            echo html();
+            echo html('real-time');
         } else {
             echo "<!DOCTYPE html><html><head><title>$title</title><style>$style</style></head><body>$body<script>$script</script></body></html>";
         }
