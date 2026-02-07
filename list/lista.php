@@ -115,7 +115,9 @@ try {
     </style>
 </head>
 <body>
-
+<audio autoplay loop>
+  <source src="/convite/background.wav" type="audio/mpeg">
+</audio>
 <div class="container">
     <header>
         <h1>🌸 Lista de Convidados</h1>
