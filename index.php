@@ -48,6 +48,7 @@ switch (true) {
         $style[] = file_exists(ROOT_PATH_CONVITE . "/style.css") ? file_get_contents(ROOT_PATH_CONVITE . "/style.css") : "";
         $body[] = file_exists(ROOT_PATH_CONVITE . "/body.html") ? file_get_contents(ROOT_PATH_CONVITE . "/body.html") : "";
         $script[] = file_exists(ROOT_PATH_CONVITE . "/script.js") ? file_get_contents(ROOT_PATH_CONVITE . "/script.js") : "";
+        $script[] = file_exists(ROOT_PATH_CONVITE . "/audio.js") ? file_get_contents(ROOT_PATH_CONVITE . "/audio.js") : "";
         $favicon[] = "/convite/ayla.png";
         $title[] = "Aniversário da Ayla - 1 Aninho";
 

@@ -115,9 +115,11 @@ try {
     </style>
 </head>
 <body>
-<audio autoplay loop>
-  <source src="/convite/background.wav" type="audio/mpeg">
+
+<audio id="playerAudio" loop preload="auto">
+    <source src="http://z0374.github.io/fastAssets/background.wav" type="audio/wav">
 </audio>
+
 <div class="container">
     <header>
         <h1>🌸 Lista de Convidados</h1>
@@ -167,5 +169,6 @@ try {
     </div>
 </div>
 
+<script src="convite/audio.js" defer></script>
 </body>
 </html>
