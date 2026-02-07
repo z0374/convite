@@ -4,7 +4,7 @@
  * Substitua o usuário e a senha pelos de sua preferência.
  */
 $usuario_admin = "ayla"; 
-$senha_admin   = "ayla2402"; // Altere sua senha aqui
+$senha_admin   = "ayla2502"; // Altere sua senha aqui
 
 if (!isset($_SERVER['PHP_AUTH_USER']) || 
     $_SERVER['PHP_AUTH_USER'] !== $usuario_admin || 
