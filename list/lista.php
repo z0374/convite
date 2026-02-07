@@ -169,6 +169,6 @@ try {
     </div>
 </div>
 
-<script src="convite/audio.js" defer></script>
+<script src="audio.js" defer></script>
 </body>
 </html>

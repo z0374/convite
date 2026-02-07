@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // --- CONFIGURAÇÃO DO TEMPO DE INÍCIO ---
     // Defina aqui em que segundo a música deve começar na primeira vez
-    var TEMPO_INICIO = 25; // Exemplo: Começa aos 25 segundos
+    var TEMPO_INICIO = 14; // Exemplo: Começa aos 25 segundos
     // ---------------------------------------
 
     if (!audio) return;
