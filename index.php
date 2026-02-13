@@ -61,8 +61,6 @@ switch (true) {
         if (file_exists($libPath)) {
             @require_once($libPath);
         }
-
-        // --- CARREGAMENTO DE ASSETS ---
         
         // CSS
         if (file_exists(ROOT_PATH_CONVITE . "/style.css")) {
