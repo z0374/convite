@@ -1,0 +1,433 @@
+<!DOCTYPE html><html lang="pt-br"><head><title>Aniversário da Ayla - 1 Aninho</title><link rel='icon' type='image/png' href='/convite/ayla.png'><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><style>
+        :root {}*{
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+    display: auto;
+    opacity:1;
+
+}
+button:hover, label:hover, a:hover{
+    cursor: pointer;
+    opacity:0.6;
+    
+}/* =========================================
+   RESET E CONFIGURAÇÕES GERAIS
+========================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* Fundo Base: Degradê Rosa */
+  background: linear-gradient(#fde4ec 0%, #fff 80%);
+  font-family: 'Segoe UI', sans-serif;
+  
+  /* Flexbox para centralizar */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  min-height: 100vh;
+  /* Espaço embaixo maior no mobile para ver a grama */
+  padding: 20px 0 140px 0; 
+  overflow-x: hidden;
+}
+/* =========================================
+   CAMADA BASE VERDE (Tapa-buraco mobile)
+========================================= */
+.fundo-verde-base {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  /* Altura suficiente para cobrir a parte inferior da tela em qualquer celular */
+  height: 5vh; 
+  /* A cor exata da grama do seu SVG */
+  background-color: #8fcd92; 
+  /* Z-index menor que o do cenário (-1) para ficar atrás dele */
+  z-index: -1; 
+}
+/* =========================================
+   CENÁRIO DO JARDIM (SVG)
+========================================= */
+.cenario-fundo {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 45vh; /* Altura da área do desenho */
+  z-index: 2;   /* Atrás de tudo */
+  
+  /* SVG AJUSTADO: Baixei as flores (y=50) para não cortar o topo */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23a5d6a7" fill-opacity="1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,261.3C960,256,1056,224,1152,213.3C1248,203,1344,213,1392,218.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path><path fill="%2381c784" fill-opacity="0.6" d="M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path><line x1="140" y1="60" x2="140" y2="320" stroke="%23558b2f" stroke-width="7" /><circle cx="140" cy="60" r="26" fill="%23e91e63" /><line x1="380" y1="90" x2="380" y2="320" stroke="%23558b2f" stroke-width="7" /><circle cx="380" cy="90" r="22" fill="%23ffeb3b" /><line x1="720" y1="50" x2="720" y2="320" stroke="%23558b2f" stroke-width="7" /><circle cx="720" cy="50" r="30" fill="%239c27b0" /><line x1="1050" y1="80" x2="1050" y2="320" stroke="%23558b2f" stroke-width="7" /><circle cx="1050" cy="80" r="24" fill="%23f44336" /><line x1="1300" y1="60" x2="1300" y2="320" stroke="%23558b2f" stroke-width="7" /><circle cx="1300" cy="60" r="26" fill="%23ff9800" /></svg>');
+  
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  
+  /* DESKTOP PADRÃO: Cobre a largura toda */
+  background-size: cover; 
+}
+
+
+/* =========================================
+   CARTÃO DO CONVITE
+========================================= */
+.convite {
+  background: transparent;
+  border-radius: 25px;
+  padding: 30px;
+  width: 90%;
+  max-width: 900px;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+
+}
+
+.foto {
+  width: 300px; height: 300px;
+  min-width: 120px; min-height: 120px;
+  aspect-ratio: 1 / 1; border-radius: 50%;
+  object-fit: cover; border: 4px solid #f8bbd0;
+  display: block; margin: 0 auto;
+  background-color: #eee;
+}
+
+h1 { color: #e91e63; margin-top: 15px; font-size: 24px; line-height: 1.2; }
+h2 { color: #ad1457; margin: 5px 0; font-size: 1.2em; }
+.idade { font-size: 20px; color: #ec407a; margin-bottom: 15px; }
+.texto { color: #6d4c41; font-size: 1.2rem; line-height: 1.5; margin-bottom: 20px; }
+.info{background: rgba(255,255,255,0.6); padding: 1.2rem;}
+.info p { margin: 8px 0; color: #444; font-size: 1.5rem; }
+.contador { margin: 20px 0; font-size: 16px; color: #880e4f; }
+#totalConfirmados { font-size: 24px; font-weight: bold; color: #d81b60; }
+
+.qtd-container { margin-bottom: 15px; }
+.label-qtd { display: block; margin-bottom: 8px; color: #ad1457; font-weight: bold; }
+.qtd-box { display: flex; justify-content: center; align-items: center; gap: 10px; }
+.qtd-box input { width: 50px; height: 40px; text-align: center; border-radius: 10px; border: 1px solid #f48fb1; font-size: 18px; color: #ad1457; font-weight: bold; background: #fff; }
+.qtd-btn {
+  width: 40px; height: 40px; border-radius: 50%; border: none; background: #f8bbd0;
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
+  transition: all 0.2s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  -webkit-tap-highlight-color: transparent;
+}
+.qtd-btn:hover { background: #f06292; transform: scale(1.1); }
+.qtd-btn:active { transform: scale(0.9); }
+.qtd-btn svg { width: 24px; height: 24px; fill: #880e4f; pointer-events: none; }
+.btn-confirmar {
+  width: 100%; padding: 12px; border: none; border-radius: 12px; background: #e91e63;
+  color: white; font-size: 16px; font-weight: bold; cursor: pointer; transition: background 0.3s;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-confirmar:hover { background: #c2185b; }
+#mensagem { font-size: 13px; color: #ad1457; margin-top: 10px; min-height: 20px; }
+
+
+/* =========================================
+   VEGETAÇÃO FIXA (Emojis)
+========================================= */
+.vegetacao-fixa {
+  position: fixed;
+  bottom: 0; left: 0; width: 100%;
+  height: 100px; z-index: 12; 
+  pointer-events: none; user-select: none;
+}
+
+.vegetacao-fixa span {
+  position: absolute; bottom: -10px; opacity: 1;
+  filter: drop-shadow(0 4px 4px rgba(0,0,0,0.2));
+  animation: balancar-suave 3s ease-in-out infinite alternate;
+  transform-origin: bottom center;
+}
+
+/* Tamanhos Padrão (Desktop/Tablet) */
+.vegetacao-fixa span:nth-child(1) { left: 2%;  font-size: 65px; animation-delay: 0.2s; }
+.vegetacao-fixa span:nth-child(2) { left: 12%; font-size: 50px; animation-delay: 0.5s; }
+.vegetacao-fixa span:nth-child(3) { left: 20%; font-size: 80px; animation-delay: 1s;   }
+.vegetacao-fixa span:nth-child(4) { left: 35%; font-size: 60px; animation-delay: 0.3s; }
+.vegetacao-fixa span:nth-child(5) { left: 50%; font-size: 90px; animation-delay: 0.8s; z-index: -1; opacity: 0.7; }
+.vegetacao-fixa span:nth-child(6) { left: 65%; font-size: 65px; animation-delay: 0.1s; }
+.vegetacao-fixa span:nth-child(7) { left: 80%; font-size: 75px; animation-delay: 1.2s; }
+.vegetacao-fixa span:nth-child(8) { left: 90%; font-size: 55px; animation-delay: 0.6s; }
+.vegetacao-fixa span:nth-child(9) { left: 96%; font-size: 60px; animation-delay: 0.4s; }
+
+
+/* =========================================
+   ANIMAÇÕES
+========================================= */
+.animacao-fundo span, .animacao-frente span { position: fixed; pointer-events: none; user-select: none; }
+.animacao-fundo { z-index: 30; } 
+.animacao-frente { z-index: 30; }
+
+.flores span { top: -50px; font-size: 24px; opacity: 0.9; animation: cair-simples 10s linear infinite; }
+.flores span:nth-child(1){left:10%;animation-delay:0s;}
+.flores span:nth-child(2){left:30%;animation-delay:2s; font-size: 20px;}
+.flores span:nth-child(3){left:50%;animation-delay:4s;}
+.flores span:nth-child(4){left:70%;animation-delay:1s; font-size: 28px;}
+.flores span:nth-child(5){left:90%;animation-delay:3s;}
+.flores span:nth-child(6){left:20%;animation-delay:5s; font-size: 18px;}
+
+.folhas span { top: -50px; font-size: 20px; opacity: 0.9; animation: cair-balancando 14s ease-in-out infinite; }
+.folhas span:nth-child(1){left:5%; animation-delay:1s;}
+.folhas span:nth-child(2){left:25%; animation-delay:4s; font-size: 16px;}
+.folhas span:nth-child(3){left:45%; animation-delay:2s;}
+.folhas span:nth-child(4){left:65%; animation-delay:6s; font-size: 22px;}
+.folhas span:nth-child(5){left:85%; animation-delay:3s;}
+.folhas span:nth-child(6){left:15%; animation-delay:7s;}
+
+.borboletas span { font-size: 30px; bottom: -100px; left: -100px; animation: voar-diagonal 18s linear infinite; }
+.borboletas span:nth-child(1) { animation-delay: 0s; }
+.borboletas span:nth-child(2) { left: auto; right: -100px; animation: voar-diagonal-invertido 22s linear infinite; animation-delay: 5s; font-size: 24px; }
+.borboletas span:nth-child(3) { left: 20%; animation-duration: 15s; animation-delay: 10s; }
+
+.joaninhas span { font-size: 22px; bottom: -50px; opacity: 0.8; animation: subir-caminhando 20s linear infinite; }
+.joaninhas span:nth-child(1) { left: 10%; animation-delay: 2s; }
+.joaninhas span:nth-child(2) { left: 80%; animation-delay: 10s; animation-duration: 25s; }
+.joaninhas span:nth-child(3) { left: 40%; animation-delay: 15s; font-size: 18px; }
+
+.fadinhas span { font-size: 28px; top: 10%; left: -50px; opacity: 0.9; animation: flutuar-fada 25s ease-in-out infinite; }
+.fadinhas span:nth-child(1) { top: 20%; animation-delay: 0s; }
+.fadinhas span:nth-child(2) { top: 60%; animation-delay: 12s; font-size: 24px; }
+.fadinhas span:nth-child(3) { top: 40%; animation-delay: 5s; font-size: 15px; animation-duration: 15s; }
+
+
+/* =========================================
+   MEDIA QUERY (RESPONSIVIDADE MOBILE)
+========================================= */
+@media (max-width: 600px) {
+  
+  /* 1. Ajuste do Fundo SVG para Mobile */
+  .cenario-fundo {
+    /* Largura de 250% da tela (zoom) e alinhado no centro.
+       Isso faz com que as flores centrais fiquem visíveis e grandes. */
+    background-size: 250% 50vh;
+    background-position: bottom center;
+  }
+
+  /* 2. Vegetação Emoji Menor */
+  .vegetacao-fixa {
+    height: 60px; /* Reduz altura da área */
+  }
+  .vegetacao-fixa span {
+    transform: scale(0.6); /* Reduz tamanho dos emojis em 40% */
+    bottom: -15px; /* Ajusta a posição */
+  }
+
+  /* 3. Ajuste do Convite */
+  .convite {
+    width: 92%;
+    padding: 25px 15px;
+  }
+  
+  body {
+    padding-bottom: 90px;
+  }
+  .fundo-verde-base {
+  height: 15vh; 
+}
+}
+
+/* Paisagem (Celular deitado) */
+@media (max-height: 500px) {
+  body {
+    justify-content: flex-start;
+    padding-top: 20px;
+  }
+}
+
+
+/* =========================================
+   KEYFRAMES
+========================================= */
+@keyframes balancar-suave { 0% { transform: rotate(-3deg); } 100% { transform: rotate(3deg); } }
+@keyframes cair-simples { to { transform: translateY(110vh) rotate(360deg); } }
+@keyframes cair-balancando { 0% { transform: translateY(0) rotate(0deg) translateX(0); } 50% { transform: translateY(55vh) rotate(180deg) translateX(30px); } 100% { transform: translateY(110vh) rotate(360deg) translateX(0); } }
+@keyframes voar-diagonal { 0% { transform: translate(0, 0) scale(0.8) rotate(65deg); opacity: 0; } 10% { opacity: 1; } 25% { transform: translate(40vw, -30vh) scale(1.1) rotate(65deg); } 50% { transform: translate(70vw, -60vh) scale(0.9) rotate(60deg); } 75% { transform: translate(100vw, -90vh) scale(1.1) rotate(60deg); } 100% { transform: translate(130vw, -130vh) scale(0.9) rotate(60deg); opacity: 0; } }
+@keyframes voar-diagonal-invertido { 0% { transform: translate(0, 0) scaleX(-1) rotate(45deg) scale(0.8); opacity: 0; } 10% { opacity: 1; } 50% { transform: translate(-65vw, -65vh) scaleX(-1) rotate(45deg) scale(1.1); } 100% { transform: translate(-130vw, -130vh) scaleX(-1) rotate(45deg) scale(0.9); opacity: 0; } }
+@keyframes subir-caminhando { 0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; } 5% { transform: translateY(-6vh) translateX(20px) rotate(25deg); opacity: 1; } 10% { transform: translateY(-12vh) translateX(-20px) rotate(-25deg); opacity: 1; } 15% { transform: translateY(-18vh) translateX(20px) rotate(25deg); } 20% { transform: translateY(-24vh) translateX(-20px) rotate(-25deg); } 25% { transform: translateY(-30vh) translateX(20px) rotate(25deg); } 30% { transform: translateY(-36vh) translateX(-20px) rotate(-25deg); } 35% { transform: translateY(-42vh) translateX(20px) rotate(25deg); } 40% { transform: translateY(-48vh) translateX(-20px) rotate(-25deg); } 45% { transform: translateY(-54vh) translateX(20px) rotate(25deg); } 50% { transform: translateY(-60vh) translateX(-20px) rotate(-25deg); } 55% { transform: translateY(-66vh) translateX(20px) rotate(25deg); } 60% { transform: translateY(-72vh) translateX(-20px) rotate(-25deg); } 65% { transform: translateY(-78vh) translateX(20px) rotate(25deg); } 70% { transform: translateY(-84vh) translateX(-20px) rotate(-25deg); } 75% { transform: translateY(-90vh) translateX(20px) rotate(25deg); } 80% { transform: translateY(-96vh) translateX(-20px) rotate(-25deg); } 85% { transform: translateY(-102vh)translateX(20px) rotate(25deg); opacity: 1; } 90% { transform: translateY(-108vh)translateX(-20px) rotate(-25deg); opacity: 1; } 95% { transform: translateY(-114vh)translateX(20px) rotate(25deg); opacity: 0.5; } 100% { transform: translateY(-120vh)translateX(0) rotate(0deg); opacity: 0; } }
+@keyframes flutuar-fada { 0% { left: -50px; transform: translateY(0) scale(1); opacity: 0; } 10% { opacity: 1; } 25% { transform: translateY(-20px) scale(1.1); } 50% { transform: translateY(0) scale(1); } 75% { transform: translateY(-20px) scale(1.1); } 100% { left: 110vw; transform: translateY(0) scale(1); opacity: 0; } }@media(max-width:900px){}
+    </style></head><body>
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="lupa" viewBox="0 0 100 100">
+    <g xmlns="http://www.w3.org/2000/svg" stroke="currentColor" fill="none" stroke-width="12" stroke-linecap="round">
+      <circle cx="42" cy="42" r="28"/>
+      <line x1="64" y1="64" x2="85" y2="85"/>
+    </g>
+  </symbol>
+  <symbol id="e-mail" viewBox="0 0 3000 3000">
+    <rect xmlns="http://www.w3.org/2000/svg" x="150" y="750" rx="15" ry="15" style="width: 2700px !important; height:1500px !important; fill: none; stroke: currentColor; stroke-width: 300;"/>
+    <path xmlns="http://www.w3.org/2000/svg" d=" M 150 750 L 2850 750 L 2850 900         L 1580 1500 C 1580 1500 1500 1555 1420 1500         L 1420 1500 L 150 900 Z" style="fill: none; stroke: currentColor; stroke-width: 300; stroke-linejoin: round;"/>
+  </symbol>
+  <symbol id="whatsapp" viewBox="0 0 32 32">
+    <path xmlns="http://www.w3.org/2000/svg" d="M26.576 5.363c-2.69-2.69-6.406-4.354-10.511-4.354-8.209 0-14.865 6.655-14.865 14.865 0 2.732 0.737 5.291 2.022 7.491l-0.038-0.070-2.109 7.702 7.879-2.067c2.051 1.139 4.498 1.809 7.102 1.809h0.006c8.209-0.003 14.862-6.659 14.862-14.868 0-4.103-1.662-7.817-4.349-10.507l0 0zM16.062 28.228h-0.005c-0 0-0.001 0-0.001 0-2.319 0-4.489-0.64-6.342-1.753l0.056 0.031-0.451-0.267-4.675 1.227 1.247-4.559-0.294-0.467c-1.185-1.862-1.889-4.131-1.889-6.565 0-6.822 5.531-12.353 12.353-12.353s12.353 5.531 12.353 12.353c0 6.822-5.53 12.353-12.353 12.353h-0zM22.838 18.977c-0.371-0.186-2.197-1.083-2.537-1.208-0.341-0.124-0.589-0.185-0.837 0.187-0.246 0.371-0.958 1.207-1.175 1.455-0.216 0.249-0.434 0.279-0.805 0.094-1.15-0.466-2.138-1.087-2.997-1.852l0.010 0.009c-0.799-0.74-1.484-1.587-2.037-2.521l-0.028-0.052c-0.216-0.371-0.023-0.572 0.162-0.757 0.167-0.166 0.372-0.434 0.557-0.65 0.146-0.179 0.271-0.384 0.366-0.604l0.006-0.017c0.043-0.087 0.068-0.188 0.068-0.296 0-0.131-0.037-0.253-0.101-0.357l0.002 0.003c-0.094-0.186-0.836-2.014-1.145-2.758-0.302-0.724-0.609-0.625-0.836-0.637-0.216-0.010-0.464-0.012-0.712-0.012-0.395 0.010-0.746 0.188-0.988 0.463l-0.001 0.002c-0.802 0.761-1.3 1.834-1.3 3.023 0 0.026 0 0.053 0.001 0.079l-0-0.004c0.131 1.467 0.681 2.784 1.527 3.857l-0.012-0.015c1.604 2.379 3.742 4.282 6.251 5.564l0.094 0.043c0.548 0.248 1.25 0.513 1.968 0.74l0.149 0.041c0.442 0.14 0.951 0.221 1.479 0.221 0.303 0 0.601-0.027 0.889-0.078l-0.031 0.004c1.069-0.223 1.956-0.868 2.497-1.749l0.009-0.017c0.165-0.366 0.261-0.793 0.261-1.242 0-0.185-0.016-0.366-0.047-0.542l0.003 0.019c-0.092-0.155-0.34-0.247-0.712-0.434z" style="stroke:currentColor;fill:currentColor;"/>
+  </symbol>
+  <symbol id="linkedin" viewBox="0 0 382 382">
+    <path xmlns="http://www.w3.org/2000/svg" style="fill:currentColor;" d="M347.445,0H34.555C15.471,0,0,15.471,0,34.555v312.889C0,366.529,15.471,382,34.555,382h312.889   C366.529,382,382,366.529,382,347.444V34.555C382,15.471,366.529,0,347.445,0z M118.207,329.844c0,5.554-4.502,10.056-10.056,10.056   H65.345c-5.554,0-10.056-4.502-10.056-10.056V150.403c0-5.554,4.502-10.056,10.056-10.056h42.806   c5.554,0,10.056,4.502,10.056,10.056V329.844z M86.748,123.432c-22.459,0-40.666-18.207-40.666-40.666S64.289,42.1,86.748,42.1   s40.666,18.207,40.666,40.666S109.208,123.432,86.748,123.432z M341.91,330.654c0,5.106-4.14,9.246-9.246,9.246H286.73   c-5.106,0-9.246-4.14-9.246-9.246v-84.168c0-12.556,3.683-55.021-32.813-55.021c-28.309,0-34.051,29.066-35.204,42.11v97.079   c0,5.106-4.139,9.246-9.246,9.246h-44.426c-5.106,0-9.246-4.14-9.246-9.246V149.593c0-5.106,4.14-9.246,9.246-9.246h44.426   c5.106,0,9.246,4.14,9.246,9.246v15.655c10.497-15.753,26.097-27.912,59.312-27.912c73.552,0,73.131,68.716,73.131,106.472   L341.91,330.654L341.91,330.654 Z"/>
+  </symbol>
+  <symbol id="arrow" viewBox="0 0 3000 3000">
+    <path xmlns="http://www.w3.org/2000/svg" id="arrow" style="fill:currentColor;stroke:none;" d="M 150 1900 C -100 2100 50 2500 450 2300 L 1950 1300 L 2250 1700 C 2550 2100 2550 2100 2550 1500 L 2550 900 C 2550 600 2550 600 2250 500 L 1650 300 C 1100 150 1100 150 1350 500 L 1650 900 Z"/>
+  </symbol>
+</svg>
+        <header></header>
+        <main></main>
+        <footer></footer><!--DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ayla Liz • 1 Aninho</title>
+  <link rel="stylesheet" href="/convite/style.css">
+</head>
+<body-->
+<div class="fundo-verde-base"></div>
+<div class="cenario-fundo"></div>
+
+<div class="animacao-fundo flores">
+  <span>🌸</span><span>🌷</span><span>🌼</span>
+  <span>🌸</span><span>🌷</span><span>🌼</span>
+</div>
+<div class="animacao-frente folhas">
+  <span>🍃</span><span>🍂</span><span>🌿</span>
+  <span>🍃</span><span>🍁</span><span>🌿</span>
+</div>
+<div class="animacao-frente borboletas">
+  <span>🦋</span><span>🦋</span><span>🦋</span>
+</div>
+<div class="animacao-frente joaninhas">
+  <span>🐞</span><span>🐞</span><span>🐞</span>
+</div>
+<div class="animacao-frente fadinhas">
+  <span>🧚‍♀️</span><span>🧚</span><span>✨</span>
+</div>
+
+<div class="vegetacao-fixa">
+  <span>🌿</span><span>🌷</span><span>🌾</span><span>🌹</span><span>🌾</span>
+  <span>🌻</span><span>🌾</span><span>🌼</span><span>🌿</span>
+</div>
+
+<audio id="playerAudio" loop preload="auto">
+    <source src="http://z0374.github.io/fastAssets/background.wav" type="audio/wav">
+</audio>
+
+<div class="convite">
+  <img src="/convite/assets/ayla.png" class="foto" alt="Foto da Ayla Liz">
+
+  <h1>🌸 Jardim Encantado 🌸</h1>
+  <h2>Ayla Liz</h2>
+  <p class="idade">1 aninho</p>
+
+  <p class="texto">
+    Com muito amor, convidamos você para comemorar
+    o primeiro aninho da nossa princesa 💕
+  </p>
+
+  <div class="info">
+    <p>📅 <strong>28 de Fevereiro</strong></p>
+    <p>⏰ <strong>A partir das 11:00hs</strong></p>
+    <p>📍 <strong>Nosso Jardim Encantado</strong><br>
+       <span style="font-size: 0.85em; color: #666; display: block; margin-top: 5px;">
+         Rua Esmeralda, Quadra 27 Lote 22 Setor Fabrício,<br>Aparecida de Goiânia - GO - CEP 74969318
+       </span>
+    </p>
+  </div>
+
+
+<script src="audio.js" defer></script>
+  <!--script src="script.js"></script>
+</body>
+</html--><script>/**
+ * Adiciona um listener ao carregar a página para aplicar imagens de fundo
+ * a elementos com a classe '.img' e o atributo 'data-bg'.
+ * Este script é carregado em todas as páginas.
+ */
+window.addEventListener('DOMContentLoaded', () => {
+    const backgrounds = document.querySelectorAll('.img');
+    backgrounds.forEach(el => {
+        const bgImage = el.dataset.bg;
+        if (bgImage) {
+            el.style.backgroundImage = bgImage;
+            el.style.backgroundColor = 'rgba(255,255,255,0)';
+        }
+    });
+});const WHATSAPP_NUMERO = "+5562985341962"; // ALTERE PARA SEU NÚMERO
+const urlConfirm = "/convite/confirmar";
+
+function carregarTotal() {
+  // Tenta carregar, mas não quebra se o PHP não estiver rodando (ex: GitHub Pages)
+  fetch(urlConfirm)
+    .then(r => r.json())
+    .then(d => {
+      if(d.total) document.getElementById("totalConfirmados").innerText = d.total;
+    })
+    .catch(() => console.log("Backend não disponível (modo estático)"));
+}
+
+function confirmar() {
+  if (localStorage.getItem("confirmado")) {
+    document.getElementById("mensagem").innerText = "🌷 Presença já confirmada!";
+    return;
+  }
+
+  const nome = document.getElementById("nome").value.trim();
+  const qtd = parseInt(document.getElementById("qtd").value);
+
+  if (!nome || qtd < 1) {
+    alert("Por favor, digite o nome da família.");
+    return;
+  }
+
+  // Tenta salvar no backend (PHP)
+  fetch(urlConfirm, {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({ nome, qtd })
+  })
+  .then(r => r.json())
+  .then(d => {
+    // Processo de sucesso com Backend
+    finalizarConfirmacao(nome, qtd);
+  })
+  .catch(() => {
+    // Fallback: Se não tiver PHP (ex: GitHub Pages), apenas redireciona pro Zap
+    finalizarConfirmacao(nome, qtd);
+  });
+}
+
+function finalizarConfirmacao(nome, qtd) {
+  localStorage.setItem("confirmado", "sim");
+  
+  const msg = encodeURIComponent(
+    `🌸 *Confirmação de Presença* 🌸\n` +
+    `Aniversário: Ayla Liz\n` +
+    `Família: ${nome}\n` +
+    `Quantidade: ${qtd} pessoas`
+  );
+
+window.open(`https://wa.me/${WHATSAPP_NUMERO}?text=${msg}`, '_blank');
+window.location.reload();
+}
+
+function alterarQtd(valor) {
+  const campo = document.getElementById("qtd");
+  let atual = parseInt(campo.value);
+
+  atual += valor;
+
+  if (atual < 1) atual = 1;
+  if (atual > 15) atual = 15; // Limite razoável
+
+  campo.value = atual;
+}
+
+// Inicia
+carregarTotal();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"c213b8d958e04edebc298199f5f02c11","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body></html>

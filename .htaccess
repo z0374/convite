@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteBase /convite/
+
+# Não redireciona se o arquivo existir (como imagens ou css)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Manda tudo que sobrar para o index.php
+RewriteRule ^(.*)$ index.php [L,QSA]

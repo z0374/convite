@@ -1,0 +1,95 @@
+<!--DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ayla Liz • 1 Aninho</title>
+  <link rel="stylesheet" href="/convite/style.css">
+</head>
+<body-->
+<div class="fundo-verde-base"></div>
+<div class="cenario-fundo"></div>
+
+<div class="animacao-fundo flores">
+  <span>🌸</span><span>🌷</span><span>🌼</span>
+  <span>🌸</span><span>🌷</span><span>🌼</span>
+</div>
+<div class="animacao-frente folhas">
+  <span>🍃</span><span>🍂</span><span>🌿</span>
+  <span>🍃</span><span>🍁</span><span>🌿</span>
+</div>
+<div class="animacao-frente borboletas">
+  <span>🦋</span><span>🦋</span><span>🦋</span>
+</div>
+<div class="animacao-frente joaninhas">
+  <span>🐞</span><span>🐞</span><span>🐞</span>
+</div>
+<div class="animacao-frente fadinhas">
+  <span>🧚‍♀️</span><span>🧚</span><span>✨</span>
+</div>
+
+<div class="vegetacao-fixa">
+  <span>🌿</span><span>🌷</span><span>🌾</span><span>🌹</span><span>🌾</span>
+  <span>🌻</span><span>🌾</span><span>🌼</span><span>🌿</span>
+</div>
+
+<audio id="playerAudio" loop preload="auto">
+    <source src="http://z0374.github.io/fastAssets/background.wav" type="audio/wav">
+</audio>
+
+<div class="convite">
+  <img src="/convite/assets/ayla.png" class="foto" alt="Foto da Ayla Liz">
+
+  <h1>🌸 Jardim Encantado 🌸</h1>
+  <h2>Ayla Liz</h2>
+  <p class="idade">1 aninho</p>
+
+  <p class="texto">
+    Com muito amor, convidamos você para comemorar
+    o primeiro aninho da nossa princesa 💕
+  </p>
+
+  <div class="info">
+    <p>📅 <strong>28 de Fevereiro</strong></p>
+    <p>⏰ <strong>A partir das 11:00hs</strong></p>
+    <p>📍 <strong>Nosso Jardim Encantado</strong><br>
+       <span style="font-size: 0.85em; color: #666; display: block; margin-top: 5px;">
+         Rua Esmeralda, Quadra 27 Lote 22 Setor Fabrício,<br>Aparecida de Goiânia - GO - CEP 74969318
+       </span>
+    </p>
+    
+    <a href="https://maps.google.com/maps?q=-16.8381896%2C-49.2974705&z=17&hl=pt-BR" target="_blank" 
+       style="display: inline-block; margin-top: 10px; color: #e91e63; font-size: 0.9em; font-weight: bold; text-decoration: none; border-bottom: 1px dashed #e91e63;">
+      📍 Ver localização no Mapa
+    </a>
+  </div>
+
+  <div class="contador">
+    🌷 Confirmados:
+    <span id="totalConfirmados">0</span>
+  </div>
+
+  <div class="confirmacao">
+    <input type="text" id="nome" placeholder="Nome da família">
+    
+    <div class="qtd-container">
+      <span class="label-qtd">👨‍👩‍👧 Pessoas</span>
+      <div class="qtd-box">
+        <button type="button" class="qtd-btn" onclick="alterarQtd(-1)" aria-label="Diminuir">
+          <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        </button>
+        <input type="text" id="qtd" value="1" readonly>
+        <button type="button" class="qtd-btn" onclick="alterarQtd(1)" aria-label="Aumentar">
+          <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <button class="btn-confirmar" onclick="confirmar()">Confirmar Presença</button>
+    <p id="mensagem"></p>
+  </div>
+</div>
+
+  <!--script src="script.js"></script>
+</body>
+</html-->

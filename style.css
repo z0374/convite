@@ -1,0 +1,245 @@
+/* =========================================
+   RESET E CONFIGURAÇÕES GERAIS
+========================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* Fundo Base: Degradê Rosa */
+  background: linear-gradient(#fde4ec 0%, #fff 80%);
+  font-family: 'Segoe UI', sans-serif;
+  
+  /* Flexbox para centralizar */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  min-height: 100vh;
+  /* Espaço embaixo maior no mobile para ver a grama */
+  padding: 20px 0 140px 0; 
+  overflow-x: hidden;
+}
+/* =========================================
+   CAMADA BASE VERDE (Tapa-buraco mobile)
+========================================= */
+.fundo-verde-base {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  /* Altura suficiente para cobrir a parte inferior da tela em qualquer celular */
+  height: 5vh; 
+  /* A cor exata da grama do seu SVG */
+  background-color: #8fcd92; 
+  /* Z-index menor que o do cenário (-1) para ficar atrás dele */
+  z-index: -1; 
+}
+/* =========================================
+   CENÁRIO DO JARDIM (SVG)
+========================================= */
+.cenario-fundo {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 45vh; /* Altura da área do desenho */
+  z-index: 2;   /* Atrás de tudo */
+  
+  /* SVG AJUSTADO: Baixei as flores (y=50) para não cortar o topo */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23a5d6a7" fill-opacity="1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,261.3C960,256,1056,224,1152,213.3C1248,203,1344,213,1392,218.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path><path fill="%2381c784" fill-opacity="0.6" d="M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path><line x1="140" y1="60" x2="140" y2="320" stroke="%23558b2f" stroke-width="7" /><circle cx="140" cy="60" r="26" fill="%23e91e63" /><line x1="380" y1="90" x2="380" y2="320" stroke="%23558b2f" stroke-width="7" /><circle cx="380" cy="90" r="22" fill="%23ffeb3b" /><line x1="720" y1="50" x2="720" y2="320" stroke="%23558b2f" stroke-width="7" /><circle cx="720" cy="50" r="30" fill="%239c27b0" /><line x1="1050" y1="80" x2="1050" y2="320" stroke="%23558b2f" stroke-width="7" /><circle cx="1050" cy="80" r="24" fill="%23f44336" /><line x1="1300" y1="60" x2="1300" y2="320" stroke="%23558b2f" stroke-width="7" /><circle cx="1300" cy="60" r="26" fill="%23ff9800" /></svg>');
+  
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  
+  /* DESKTOP PADRÃO: Cobre a largura toda */
+  background-size: cover; 
+}
+
+
+/* =========================================
+   CARTÃO DO CONVITE
+========================================= */
+.convite {
+  background: #fff;
+  border-radius: 25px;
+  padding: 30px;
+  width: 90%;
+  max-width: 510px;
+  text-align: center;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+  position: relative;
+  z-index: 10;
+  border: 4px solid #fff;
+}
+
+.foto {
+  width: 120px; height: 120px;
+  min-width: 120px; min-height: 120px;
+  aspect-ratio: 1 / 1; border-radius: 50%;
+  object-fit: cover; border: 4px solid #f8bbd0;
+  display: block; margin: 0 auto;
+  background-color: #eee;
+}
+
+h1 { color: #e91e63; margin-top: 15px; font-size: 24px; line-height: 1.2; }
+h2 { color: #ad1457; margin: 5px 0; font-size: 1.2em; }
+.idade { font-size: 20px; color: #ec407a; margin-bottom: 15px; }
+.texto { color: #6d4c41; font-size: 14px; line-height: 1.5; margin-bottom: 20px; }
+.info p { margin: 8px 0; color: #444; font-size: 0.95em; }
+.contador { margin: 20px 0; font-size: 16px; color: #880e4f; }
+#totalConfirmados { font-size: 24px; font-weight: bold; color: #d81b60; }
+
+.confirmacao { background: #fff0f6; padding: 15px; border-radius: 15px; margin-top: 15px; }
+.confirmacao input[type="text"]#nome {
+  width: 100%; padding: 12px; border-radius: 12px; border: 1px solid #f48fb1;
+  margin-bottom: 15px; box-sizing: border-box; outline: none; font-size: 16px;
+}
+.qtd-container { margin-bottom: 15px; }
+.label-qtd { display: block; margin-bottom: 8px; color: #ad1457; font-weight: bold; }
+.qtd-box { display: flex; justify-content: center; align-items: center; gap: 10px; }
+.qtd-box input { width: 50px; height: 40px; text-align: center; border-radius: 10px; border: 1px solid #f48fb1; font-size: 18px; color: #ad1457; font-weight: bold; background: #fff; }
+.qtd-btn {
+  width: 40px; height: 40px; border-radius: 50%; border: none; background: #f8bbd0;
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
+  transition: all 0.2s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  -webkit-tap-highlight-color: transparent;
+}
+.qtd-btn:hover { background: #f06292; transform: scale(1.1); }
+.qtd-btn:active { transform: scale(0.9); }
+.qtd-btn svg { width: 24px; height: 24px; fill: #880e4f; pointer-events: none; }
+.btn-confirmar {
+  width: 100%; padding: 12px; border: none; border-radius: 12px; background: #e91e63;
+  color: white; font-size: 16px; font-weight: bold; cursor: pointer; transition: background 0.3s;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-confirmar:hover { background: #c2185b; }
+#mensagem { font-size: 13px; color: #ad1457; margin-top: 10px; min-height: 20px; }
+
+
+/* =========================================
+   VEGETAÇÃO FIXA (Emojis)
+========================================= */
+.vegetacao-fixa {
+  position: fixed;
+  bottom: 0; left: 0; width: 100%;
+  height: 100px; z-index: 12; 
+  pointer-events: none; user-select: none;
+}
+
+.vegetacao-fixa span {
+  position: absolute; bottom: -10px; opacity: 1;
+  filter: drop-shadow(0 4px 4px rgba(0,0,0,0.2));
+  animation: balancar-suave 3s ease-in-out infinite alternate;
+  transform-origin: bottom center;
+}
+
+/* Tamanhos Padrão (Desktop/Tablet) */
+.vegetacao-fixa span:nth-child(1) { left: 2%;  font-size: 65px; animation-delay: 0.2s; }
+.vegetacao-fixa span:nth-child(2) { left: 12%; font-size: 50px; animation-delay: 0.5s; }
+.vegetacao-fixa span:nth-child(3) { left: 20%; font-size: 80px; animation-delay: 1s;   }
+.vegetacao-fixa span:nth-child(4) { left: 35%; font-size: 60px; animation-delay: 0.3s; }
+.vegetacao-fixa span:nth-child(5) { left: 50%; font-size: 90px; animation-delay: 0.8s; z-index: -1; opacity: 0.7; }
+.vegetacao-fixa span:nth-child(6) { left: 65%; font-size: 65px; animation-delay: 0.1s; }
+.vegetacao-fixa span:nth-child(7) { left: 80%; font-size: 75px; animation-delay: 1.2s; }
+.vegetacao-fixa span:nth-child(8) { left: 90%; font-size: 55px; animation-delay: 0.6s; }
+.vegetacao-fixa span:nth-child(9) { left: 96%; font-size: 60px; animation-delay: 0.4s; }
+
+
+/* =========================================
+   ANIMAÇÕES
+========================================= */
+.animacao-fundo span, .animacao-frente span { position: fixed; pointer-events: none; user-select: none; }
+.animacao-fundo { z-index: 30; } 
+.animacao-frente { z-index: 30; }
+
+.flores span { top: -50px; font-size: 24px; opacity: 0.9; animation: cair-simples 10s linear infinite; }
+.flores span:nth-child(1){left:10%;animation-delay:0s;}
+.flores span:nth-child(2){left:30%;animation-delay:2s; font-size: 20px;}
+.flores span:nth-child(3){left:50%;animation-delay:4s;}
+.flores span:nth-child(4){left:70%;animation-delay:1s; font-size: 28px;}
+.flores span:nth-child(5){left:90%;animation-delay:3s;}
+.flores span:nth-child(6){left:20%;animation-delay:5s; font-size: 18px;}
+
+.folhas span { top: -50px; font-size: 20px; opacity: 0.9; animation: cair-balancando 14s ease-in-out infinite; }
+.folhas span:nth-child(1){left:5%; animation-delay:1s;}
+.folhas span:nth-child(2){left:25%; animation-delay:4s; font-size: 16px;}
+.folhas span:nth-child(3){left:45%; animation-delay:2s;}
+.folhas span:nth-child(4){left:65%; animation-delay:6s; font-size: 22px;}
+.folhas span:nth-child(5){left:85%; animation-delay:3s;}
+.folhas span:nth-child(6){left:15%; animation-delay:7s;}
+
+.borboletas span { font-size: 30px; bottom: -100px; left: -100px; animation: voar-diagonal 18s linear infinite; }
+.borboletas span:nth-child(1) { animation-delay: 0s; }
+.borboletas span:nth-child(2) { left: auto; right: -100px; animation: voar-diagonal-invertido 22s linear infinite; animation-delay: 5s; font-size: 24px; }
+.borboletas span:nth-child(3) { left: 20%; animation-duration: 15s; animation-delay: 10s; }
+
+.joaninhas span { font-size: 22px; bottom: -50px; opacity: 0.8; animation: subir-caminhando 20s linear infinite; }
+.joaninhas span:nth-child(1) { left: 10%; animation-delay: 2s; }
+.joaninhas span:nth-child(2) { left: 80%; animation-delay: 10s; animation-duration: 25s; }
+.joaninhas span:nth-child(3) { left: 40%; animation-delay: 15s; font-size: 18px; }
+
+.fadinhas span { font-size: 28px; top: 10%; left: -50px; opacity: 0.9; animation: flutuar-fada 25s ease-in-out infinite; }
+.fadinhas span:nth-child(1) { top: 20%; animation-delay: 0s; }
+.fadinhas span:nth-child(2) { top: 60%; animation-delay: 12s; font-size: 24px; }
+.fadinhas span:nth-child(3) { top: 40%; animation-delay: 5s; font-size: 15px; animation-duration: 15s; }
+
+
+/* =========================================
+   MEDIA QUERY (RESPONSIVIDADE MOBILE)
+========================================= */
+@media (max-width: 600px) {
+  
+  /* 1. Ajuste do Fundo SVG para Mobile */
+  .cenario-fundo {
+    /* Largura de 250% da tela (zoom) e alinhado no centro.
+       Isso faz com que as flores centrais fiquem visíveis e grandes. */
+    background-size: 250% 50vh;
+    background-position: bottom center;
+  }
+
+  /* 2. Vegetação Emoji Menor */
+  .vegetacao-fixa {
+    height: 60px; /* Reduz altura da área */
+  }
+  .vegetacao-fixa span {
+    transform: scale(0.6); /* Reduz tamanho dos emojis em 40% */
+    bottom: -15px; /* Ajusta a posição */
+  }
+
+  /* 3. Ajuste do Convite */
+  .convite {
+    width: 92%;
+    padding: 25px 15px;
+  }
+  
+  body {
+    padding-bottom: 90px;
+  }
+  .fundo-verde-base {
+  height: 15vh; 
+}
+}
+
+/* Paisagem (Celular deitado) */
+@media (max-height: 500px) {
+  body {
+    justify-content: flex-start;
+    padding-top: 20px;
+  }
+}
+
+
+/* =========================================
+   KEYFRAMES
+========================================= */
+@keyframes balancar-suave { 0% { transform: rotate(-3deg); } 100% { transform: rotate(3deg); } }
+@keyframes cair-simples { to { transform: translateY(110vh) rotate(360deg); } }
+@keyframes cair-balancando { 0% { transform: translateY(0) rotate(0deg) translateX(0); } 50% { transform: translateY(55vh) rotate(180deg) translateX(30px); } 100% { transform: translateY(110vh) rotate(360deg) translateX(0); } }
+@keyframes voar-diagonal { 0% { transform: translate(0, 0) scale(0.8) rotate(65deg); opacity: 0; } 10% { opacity: 1; } 25% { transform: translate(40vw, -30vh) scale(1.1) rotate(65deg); } 50% { transform: translate(70vw, -60vh) scale(0.9) rotate(60deg); } 75% { transform: translate(100vw, -90vh) scale(1.1) rotate(60deg); } 100% { transform: translate(130vw, -130vh) scale(0.9) rotate(60deg); opacity: 0; } }
+@keyframes voar-diagonal-invertido { 0% { transform: translate(0, 0) scaleX(-1) rotate(45deg) scale(0.8); opacity: 0; } 10% { opacity: 1; } 50% { transform: translate(-65vw, -65vh) scaleX(-1) rotate(45deg) scale(1.1); } 100% { transform: translate(-130vw, -130vh) scaleX(-1) rotate(45deg) scale(0.9); opacity: 0; } }
+@keyframes subir-caminhando { 0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; } 5% { transform: translateY(-6vh) translateX(20px) rotate(25deg); opacity: 1; } 10% { transform: translateY(-12vh) translateX(-20px) rotate(-25deg); opacity: 1; } 15% { transform: translateY(-18vh) translateX(20px) rotate(25deg); } 20% { transform: translateY(-24vh) translateX(-20px) rotate(-25deg); } 25% { transform: translateY(-30vh) translateX(20px) rotate(25deg); } 30% { transform: translateY(-36vh) translateX(-20px) rotate(-25deg); } 35% { transform: translateY(-42vh) translateX(20px) rotate(25deg); } 40% { transform: translateY(-48vh) translateX(-20px) rotate(-25deg); } 45% { transform: translateY(-54vh) translateX(20px) rotate(25deg); } 50% { transform: translateY(-60vh) translateX(-20px) rotate(-25deg); } 55% { transform: translateY(-66vh) translateX(20px) rotate(25deg); } 60% { transform: translateY(-72vh) translateX(-20px) rotate(-25deg); } 65% { transform: translateY(-78vh) translateX(20px) rotate(25deg); } 70% { transform: translateY(-84vh) translateX(-20px) rotate(-25deg); } 75% { transform: translateY(-90vh) translateX(20px) rotate(25deg); } 80% { transform: translateY(-96vh) translateX(-20px) rotate(-25deg); } 85% { transform: translateY(-102vh)translateX(20px) rotate(25deg); opacity: 1; } 90% { transform: translateY(-108vh)translateX(-20px) rotate(-25deg); opacity: 1; } 95% { transform: translateY(-114vh)translateX(20px) rotate(25deg); opacity: 0.5; } 100% { transform: translateY(-120vh)translateX(0) rotate(0deg); opacity: 0; } }
+@keyframes flutuar-fada { 0% { left: -50px; transform: translateY(0) scale(1); opacity: 0; } 10% { opacity: 1; } 25% { transform: translateY(-20px) scale(1.1); } 50% { transform: translateY(0) scale(1); } 75% { transform: translateY(-20px) scale(1.1); } 100% { left: 110vw; transform: translateY(0) scale(1); opacity: 0; } }
